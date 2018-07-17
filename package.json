@@ -1,0 +1,29 @@
+{
+  "name": "super-connector-api",
+  "version": "1.0.0",
+  "description": "A simple graphql api.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanmathew333/Super-Connector-API.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "graphql"
+  ],
+  "author": "Alan Mathew",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alanmathew333/Super-Connector-API/issues"
+  },
+  "homepage": "https://github.com/alanmathew333/Super-Connector-API#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12"
+  }
+}
