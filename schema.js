@@ -5,28 +5,30 @@ const {
   GraphQLSchema,
   GraphQLList,
   GraphQLNonNull
-} = require('graphql')
+} = require('graphql');
 
 // Hardcoded data
 const customers = [{
-  id: '1',
-  name: 'Alan',
-  email: 'alan@gmail.com',
-  age: 22
-}, {
-  id: '2',
-  name: 'Aleena',
-  email: 'aleena@gmail.com',
-  age: 17
-}, {
+    id: '1',
+    name: 'Alan',
+    email: 'alan@gmail.com',
+    age: 22
+  },
+  {
+    id: '2',
+    name: 'Aleena',
+    email: 'aleena@gmail.com',
+    age: 17
+  },
+  {
+    id: '3',
+    name: 'James',
+    email: 'james@gmail.com',
+    age: 25
+  }
+];
 
-  id: '3',
-  name: 'james',
-  email: 'james@gmail.com',
-  age: 25
-}]
-
-// Customer Type
+// Customer Type  schema
 const CustomerType = new GraphQLObjectType({
   name: 'customer',
   fields: () => ({
@@ -43,8 +45,7 @@ const CustomerType = new GraphQLObjectType({
       type: GraphQLInt
     }
   })
-})
-
+});
 
 // Root Query
 const RootQuery = new GraphQLObjectType({
@@ -54,20 +55,27 @@ const RootQuery = new GraphQLObjectType({
       type: CustomerType, // above
       args: {
         id: {
-          GraphQLString
-        },
-        resolve(parentValue, args) { // returning data
-          for (let i = 0; i < customers.length; i++) {
-            if (customers[i].id == args.id) {
-              return customers[i]
-            }
+          type: GraphQLString
+        }
+      },
+      resolve(parentValue, args) {
+        // returning data
+        for (let i = 0; i < 3; i++) {
+          if (customers[i].id + '' == args.id + '') {
+            return customers[i];
           }
         }
       }
+    },
+    customers: {
+      type: new GraphQLList(CustomerType),
+      resolve(parentValue, args) {
+        return customers
+      }
     }
   }
-})
+});
 
 module.exports = new GraphQLSchema({
   query: RootQuery
-})
+});

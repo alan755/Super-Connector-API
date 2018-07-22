@@ -1,4 +1,4 @@
-const exrpess = require('express')
+const express = require('express')
 const expressGraphQL = require('express-graphql')
 const schema = require('./schema.js')
 
@@ -6,8 +6,8 @@ const port = process.env.port || 4000
 
 var app = express()
 
-app.use('/graphql', expressGraphQL({
-  Schema: schema,
+app.use('/graphiql', expressGraphQL({
+  schema,
   graphiql: true
 }))
 
